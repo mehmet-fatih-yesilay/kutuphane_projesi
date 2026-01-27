@@ -41,10 +41,11 @@ $user_avatar = $is_logged_in ? $_SESSION['avatar'] : 'default-avatar.png';
 $current_page = basename($_SERVER['PHP_SELF']);
 
 // Aktif sayfa için CSS class'ı ekleyen yardımcı fonksiyon
-// Kullanım: <?php echo isActive('index.php'); ?>
-function isActive($page) {
-global $current_page; // Global değişkeni kullan
-return ($current_page === $page) ? 'active' : ''; // Eşitse 'active' döndür
+// Kullanım: <?php echo isActive('index.php'); 
+function isActive($page)
+{
+    global $current_page; // Global değişkeni kullan
+    return ($current_page === $page) ? 'active' : ''; // Eşitse 'active' döndür
 }
 
 ?>
@@ -97,16 +98,16 @@ return ($current_page === $page) ? 'active' : ''; // Eşitse 'active' döndür
 
 <body>
     <!-- ============================================
-         HEADER - ÜST KISIM
+         HEADER - PREMIUM GLASSMORPHISM NAVBAR
          ============================================ -->
 
     <header>
         <nav>
             <!-- ============================================
-                 LOGO
+                 LOGO - GRADIENT TEXT
                  ============================================ -->
 
-            <!-- Logo - Ana sayfaya link -->
+            <!-- Logo - Ana sayfaya link (Gradient efektli) -->
             <a href="index.php" class="logo">
                 Kitap Sosyal Ağı
             </a>
@@ -117,11 +118,11 @@ return ($current_page === $page) ? 'active' : ''; // Eşitse 'active' döndür
 
             <!-- Hamburger menü butonu (mobilde görünür) -->
             <button class="menu-toggle" id="menuToggle" aria-label="Menüyü Aç/Kapat">
-                <i class="fas fa-bars"></i> <!-- Font Awesome hamburger ikonu -->
+                <i class="fas fa-bars"></i>
             </button>
 
             <!-- ============================================
-                 NAVİGASYON MENÜSÜ
+                 NAVİGASYON MENÜSÜ - PREMIUM DESIGN
                  ============================================ -->
 
             <ul class="nav-menu" id="navMenu">
@@ -130,38 +131,42 @@ return ($current_page === $page) ? 'active' : ''; // Eşitse 'active' döndür
 
                     <!-- Ana Sayfa -->
                     <li>
-                        <a href="dashboard.php" class="<?php echo isActive('dashboard.php'); ?>">
-                            <i class="fas fa-home"></i> Ana Sayfa
+                        <a href="index.php" class="<?php echo isActive('index.php'); ?>">
+                            <i class="fas fa-home"></i>
+                            <span>Ana Sayfa</span>
                         </a>
                     </li>
 
                     <!-- Kitaplar -->
                     <li>
-                        <a href="search.php" class="<?php echo isActive('search.php'); ?>">
-                            <i class="fas fa-book"></i> Kitaplar
+                        <a href="books.php" class="<?php echo isActive('books.php'); ?>">
+                            <i class="fas fa-book"></i>
+                            <span>Kitaplar</span>
                         </a>
                     </li>
 
                     <!-- Keşfet -->
                     <li>
                         <a href="explore.php" class="<?php echo isActive('explore.php'); ?>">
-                            <i class="fas fa-compass"></i> Keşfet
+                            <i class="fas fa-compass"></i>
+                            <span>Keşfet</span>
                         </a>
                     </li>
 
                     <!-- Profil -->
                     <li>
                         <a href="profile.php" class="<?php echo isActive('profile.php'); ?>">
-                            <i class="fas fa-user"></i> Profil
+                            <i class="fas fa-user-circle"></i>
+                            <span>Profil</span>
                         </a>
                     </li>
 
-                    <!-- Kullanıcı Avatar ve İsmi -->
-                    <li>
-                        <a href="profile.php" style="display: flex; align-items: center; gap: 8px;">
+                    <!-- Kullanıcı Avatar (Sadece mobilde gizli) -->
+                    <li style="margin-left: 8px;">
+                        <a href="profile.php" style="display: flex; align-items: center; gap: 10px; padding: 6px 12px;">
                             <img src="uploads/avatars/<?php echo htmlspecialchars($user_avatar); ?>"
                                 alt="<?php echo htmlspecialchars($user_name); ?>" class="avatar">
-                            <span>
+                            <span style="font-weight: 600; color: var(--anthracite);">
                                 <?php echo htmlspecialchars($user_name); ?>
                             </span>
                         </a>
@@ -169,8 +174,9 @@ return ($current_page === $page) ? 'active' : ''; // Eşitse 'active' döndür
 
                     <!-- Çıkış Yap -->
                     <li>
-                        <a href="logout.php" class="btn btn-danger btn-sm">
-                            <i class="fas fa-sign-out-alt"></i> Çıkış Yap
+                        <a href="logout.php" class="btn btn-danger btn-sm" style="margin-left: 8px;">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Çıkış</span>
                         </a>
                     </li>
 
@@ -180,28 +186,32 @@ return ($current_page === $page) ? 'active' : ''; // Eşitse 'active' döndür
                     <!-- Ana Sayfa -->
                     <li>
                         <a href="index.php" class="<?php echo isActive('index.php'); ?>">
-                            <i class="fas fa-home"></i> Ana Sayfa
+                            <i class="fas fa-home"></i>
+                            <span>Ana Sayfa</span>
                         </a>
                     </li>
 
                     <!-- Hakkında -->
                     <li>
                         <a href="about.php" class="<?php echo isActive('about.php'); ?>">
-                            <i class="fas fa-info-circle"></i> Hakkında
+                            <i class="fas fa-info-circle"></i>
+                            <span>Hakkında</span>
                         </a>
                     </li>
 
                     <!-- Giriş Yap -->
-                    <li>
-                        <a href="login.php" class="btn btn-primary btn-sm <?php echo isActive('login.php'); ?>">
-                            <i class="fas fa-sign-in-alt"></i> Giriş Yap
+                    <li style="margin-left: 16px;">
+                        <a href="login.php" class="btn btn-primary btn-sm">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span>Giriş Yap</span>
                         </a>
                     </li>
 
                     <!-- Kayıt Ol -->
                     <li>
-                        <a href="register.php" class="btn btn-secondary btn-sm <?php echo isActive('register.php'); ?>">
-                            <i class="fas fa-user-plus"></i> Kayıt Ol
+                        <a href="register.php" class="btn btn-accent btn-sm">
+                            <i class="fas fa-user-plus"></i>
+                            <span>Kayıt Ol</span>
                         </a>
                     </li>
 
