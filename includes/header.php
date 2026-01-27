@@ -1,43 +1,31 @@
 <?php
 /**
  * ============================================
- * HEADER - NAVİGASYON BARI
+ * HEADER - CLEAN DARK NAVBAR
  * ============================================
  * Proje: Kitap Sosyal Ağı
  * Dosya: includes/header.php
- * Açıklama: Tüm sayfalarda kullanılacak üst kısım (header)
- * İçerik: Session başlatma, navigasyon menüsü, logo
+ * Tasarım: Clean Dark & Vibrant Accents
  * ============================================
  */
 
-// ============================================
-// SESSION BAŞLATMA
-// ============================================
-
-// Eğer session başlatılmamışsa başlat
-// session_status() fonksiyonu session durumunu kontrol eder
-// PHP_SESSION_NONE = session başlatılmamış demektir
+// Session kontrolü (eğer başlatılmamışsa başlat)
 if (session_status() === PHP_SESSION_NONE) {
-    session_start(); // Session'ı başlat
+    session_start();
 }
 
-// ============================================
-// KULLANICI GİRİŞ KONTROLÜ
-// ============================================
-
 // Kullanıcı giriş yapmış mı kontrol et
-// $_SESSION['user_id'] varsa kullanıcı giriş yapmış demektir
 $is_logged_in = isset($_SESSION['user_id']);
 
-// Kullanıcı bilgilerini al (giriş yapmışsa)
-$user_name = $is_logged_in ? $_SESSION['username'] : '';
-$user_avatar = $is_logged_in ? $_SESSION['avatar'] : 'default-avatar.png';
+// Eğer giriş yapmışsa kullanıcı bilgilerini al
+if ($is_logged_in) {
+    $user_id = $_SESSION['user_id'];
+    $user_name = $_SESSION['username'];
+    $user_full_name = $_SESSION['full_name'];
+    $user_avatar = $_SESSION['avatar'];
+}
 
-// ============================================
-// AKTİF SAYFA TESPİTİ
-// ============================================
-
-// Şu anki sayfanın dosya adını al (örn: index.php, dashboard.php)
+// Aktif sayfa tespiti için mevcut sayfayı al
 $current_page = basename($_SERVER['PHP_SELF']);
 
 // Aktif sayfa için CSS class'ı ekleyen yardımcı fonksiyon
@@ -54,62 +42,52 @@ function isActive($page)
 
 <head>
     <!-- ============================================
-         META ETİKETLERİ
+         META TAGS
          ============================================ -->
 
-    <!-- Karakter seti (Türkçe karakter desteği için UTF-8) -->
     <meta charset="UTF-8">
-
-    <!-- Responsive tasarım için viewport ayarı -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Tarayıcı uyumluluğu (IE için) -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <!-- Sayfa açıklaması (SEO için) -->
-    <meta name="description" content="Kitap Sosyal Ağı - Kitapları keşfet, yorum yap, arkadaşlarınla paylaş">
-
-    <!-- Anahtar kelimeler (SEO için) -->
-    <meta name="keywords" content="kitap, sosyal ağ, okuma, yorum, öneri">
-
-    <!-- Yazar bilgisi -->
+    <meta name="description" content="Kitap Sosyal Ağı - Kitapseverlerin buluşma noktası">
     <meta name="author" content="Kitap Sosyal Ağı">
 
-    <!-- Sayfa başlığı (her sayfada değişebilir) -->
+    <!-- ============================================
+         TITLE
+         ============================================ -->
+
     <title>
-        <?php echo isset($page_title) ? $page_title . ' - ' : ''; ?>Kitap Sosyal Ağı
+        <?php echo isset($page_title) ? htmlspecialchars($page_title) . ' - Kitap Sosyal Ağı' : 'Kitap Sosyal Ağı'; ?>
     </title>
 
     <!-- ============================================
-         CSS DOSYALARI
+         CSS
          ============================================ -->
 
-    <!-- Ana stil dosyası -->
+    <!-- Ana CSS Dosyası -->
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <!-- Google Fonts (opsiyonel - daha güzel fontlar için) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- ============================================
+         FONT AWESOME (İkonlar)
+         ============================================ -->
 
-    <!-- Font Awesome (ikonlar için - opsiyonel) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
 
 <body>
     <!-- ============================================
-         HEADER - PREMIUM GLASSMORPHISM NAVBAR
+         HEADER - CLEAN DARK NAVBAR
          ============================================ -->
 
     <header>
         <nav>
             <!-- ============================================
-                 LOGO - GRADIENT TEXT
+                 LOGO - "LONELY EYE" GRADIENT
                  ============================================ -->
 
-            <!-- Logo - Ana sayfaya link (Gradient efektli) -->
-            <a href="index.php" class="logo">
-                Kitap Sosyal Ağı
+            <!-- Logo - Deep Blue to Baby Blue Gradient with Icon -->
+            <a href="<?php echo $is_logged_in ? 'dashboard.php' : 'index.php'; ?>" class="logo">
+                <i class="fas fa-book brand-icon"></i>
+                Lonely Eye
             </a>
 
             <!-- ============================================
@@ -122,16 +100,16 @@ function isActive($page)
             </button>
 
             <!-- ============================================
-                 NAVİGASYON MENÜSÜ - PREMIUM DESIGN
+                 NAVİGASYON MENÜSÜ
                  ============================================ -->
 
             <ul class="nav-menu" id="navMenu">
                 <?php if ($is_logged_in): ?>
                     <!-- Kullanıcı giriş yapmışsa bu menüyü göster -->
 
-                    <!-- Ana Sayfa -->
+                    <!-- Dashboard -->
                     <li>
-                        <a href="index.php" class="<?php echo isActive('index.php'); ?>">
+                        <a href="dashboard.php" class="<?php echo isActive('dashboard.php'); ?>">
                             <i class="fas fa-home"></i>
                             <span>Ana Sayfa</span>
                         </a>
@@ -161,12 +139,13 @@ function isActive($page)
                         </a>
                     </li>
 
-                    <!-- Kullanıcı Avatar (Sadece mobilde gizli) -->
-                    <li style="margin-left: 8px;">
-                        <a href="profile.php" style="display: flex; align-items: center; gap: 10px; padding: 6px 12px;">
+                    <!-- Kullanıcı Avatar -->
+                    <li style="margin-left: var(--space-md);">
+                        <a href="profile.php"
+                            style="display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-xs) var(--space-md);">
                             <img src="uploads/avatars/<?php echo htmlspecialchars($user_avatar); ?>"
                                 alt="<?php echo htmlspecialchars($user_name); ?>" class="avatar">
-                            <span style="font-weight: 600; color: var(--anthracite);">
+                            <span style="font-weight: 700; color: var(--text-primary);">
                                 <?php echo htmlspecialchars($user_name); ?>
                             </span>
                         </a>
@@ -174,7 +153,7 @@ function isActive($page)
 
                     <!-- Çıkış Yap -->
                     <li>
-                        <a href="logout.php" class="btn btn-danger btn-sm" style="margin-left: 8px;">
+                        <a href="logout.php" class="btn btn-danger btn-sm" style="margin-left: var(--space-sm);">
                             <i class="fas fa-sign-out-alt"></i>
                             <span>Çıkış</span>
                         </a>
@@ -199,17 +178,17 @@ function isActive($page)
                         </a>
                     </li>
 
-                    <!-- Giriş Yap -->
-                    <li style="margin-left: 16px;">
+                    <!-- Giriş Yap - Purple -->
+                    <li style="margin-left: var(--space-xl);">
                         <a href="login.php" class="btn btn-primary btn-sm">
                             <i class="fas fa-sign-in-alt"></i>
                             <span>Giriş Yap</span>
                         </a>
                     </li>
 
-                    <!-- Kayıt Ol -->
+                    <!-- Kayıt Ol - Baby Blue -->
                     <li>
-                        <a href="register.php" class="btn btn-accent btn-sm">
+                        <a href="register.php" class="btn btn-gold btn-sm">
                             <i class="fas fa-user-plus"></i>
                             <span>Kayıt Ol</span>
                         </a>
@@ -221,9 +200,8 @@ function isActive($page)
     </header>
 
     <!-- ============================================
-         MAIN CONTENT BAŞLANGICI
+         MAIN CONTENT BAŞLANGIÇ
          ============================================ -->
 
-    <!-- Ana içerik her sayfada buradan başlar -->
+    <!-- Main content buradan başlıyor, her sayfada devam edecek -->
     <main>
-        <!-- Sayfa içeriği buraya gelecek -->
