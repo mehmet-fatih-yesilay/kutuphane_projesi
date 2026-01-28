@@ -81,7 +81,7 @@ function isActive($page)
     <header>
         <nav>
             <!-- ============================================
-                 LOGO - "LONELY EYE" GRADIENT
+                 LOGO - "LONELY EYE" GRADIENT (LEFT)
                  ============================================ -->
 
             <!-- Logo - Deep Blue to Baby Blue Gradient with Icon -->
@@ -100,14 +100,14 @@ function isActive($page)
             </button>
 
             <!-- ============================================
-                 NAVİGASYON MENÜSÜ
+                 NAVİGASYON MENÜSÜ (CENTER)
                  ============================================ -->
 
             <ul class="nav-menu" id="navMenu">
                 <?php if ($is_logged_in): ?>
                     <!-- Kullanıcı giriş yapmışsa bu menüyü göster -->
 
-                    <!-- Dashboard -->
+                    <!-- Ana Sayfa -->
                     <li>
                         <a href="dashboard.php" class="<?php echo isActive('dashboard.php'); ?>">
                             <i class="fas fa-home"></i>
@@ -123,14 +123,6 @@ function isActive($page)
                         </a>
                     </li>
 
-                    <!-- Keşfet -->
-                    <li>
-                        <a href="explore.php" class="<?php echo isActive('explore.php'); ?>">
-                            <i class="fas fa-compass"></i>
-                            <span>Keşfet</span>
-                        </a>
-                    </li>
-
                     <!-- Profil -->
                     <li>
                         <a href="profile.php" class="<?php echo isActive('profile.php'); ?>">
@@ -139,23 +131,11 @@ function isActive($page)
                         </a>
                     </li>
 
-                    <!-- Kullanıcı Avatar -->
-                    <li style="margin-left: var(--space-md);">
-                        <a href="profile.php"
-                            style="display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-xs) var(--space-md);">
-                            <img src="uploads/avatars/<?php echo htmlspecialchars($user_avatar); ?>"
-                                alt="<?php echo htmlspecialchars($user_name); ?>" class="avatar">
-                            <span style="font-weight: 700; color: var(--text-primary);">
-                                <?php echo htmlspecialchars($user_name); ?>
-                            </span>
-                        </a>
-                    </li>
-
-                    <!-- Çıkış Yap -->
+                    <!-- Çıkış Yap (Standart Link) -->
                     <li>
-                        <a href="logout.php" class="btn btn-danger btn-sm" style="margin-left: var(--space-sm);">
+                        <a href="logout.php" class="<?php echo isActive('logout.php'); ?>">
                             <i class="fas fa-sign-out-alt"></i>
-                            <span>Çıkış</span>
+                            <span>Çıkış Yap</span>
                         </a>
                     </li>
 
@@ -196,6 +176,22 @@ function isActive($page)
 
                 <?php endif; ?>
             </ul>
+
+            <!-- ============================================
+                 KULLANICI PROFİL KUTUSU (RIGHT)
+                 ============================================ -->
+
+            <?php if ($is_logged_in): ?>
+                <div class="user-profile-box">
+                    <a href="profile.php" class="user-profile-link">
+                        <img src="uploads/avatars/<?php echo htmlspecialchars($user_avatar); ?>"
+                            alt="<?php echo htmlspecialchars($user_name); ?>" class="avatar">
+                        <span class="user-name">
+                            <?php echo htmlspecialchars($user_name); ?>
+                        </span>
+                    </a>
+                </div>
+            <?php endif; ?>
         </nav>
     </header>
 

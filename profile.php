@@ -233,7 +233,7 @@ require_once 'includes/header.php';
 
                 <!-- Yorum Sayısı -->
                 <div>
-                    <span style="font-weight: bold; font-size: 1.3rem; color: #20B2AA;">
+                    <span style="font-weight: bold; font-size: 1.3rem; color: #40C4FF;">
                         <?php echo $review_count; ?>
                     </span>
                     <span style="color: #7b8794; margin-left: 5px;">Yorum</span>
@@ -241,7 +241,7 @@ require_once 'includes/header.php';
 
                 <!-- Takipçi Sayısı -->
                 <div>
-                    <span style="font-weight: bold; font-size: 1.3rem; color: #20B2AA;">
+                    <span style="font-weight: bold; font-size: 1.3rem; color: #40C4FF;">
                         <?php echo $follower_count; ?>
                     </span>
                     <span style="color: #7b8794; margin-left: 5px;">Takipçi</span>
@@ -249,7 +249,7 @@ require_once 'includes/header.php';
 
                 <!-- Takip Edilen Sayısı -->
                 <div>
-                    <span style="font-weight: bold; font-size: 1.3rem; color: #20B2AA;">
+                    <span style="font-weight: bold; font-size: 1.3rem; color: #40C4FF;">
                         <?php echo $following_count; ?>
                     </span>
                     <span style="color: #7b8794; margin-left: 5px;">Takip</span>

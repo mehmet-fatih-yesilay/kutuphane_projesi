@@ -172,11 +172,10 @@ require_once 'includes/header.php';
      ARAMA BÖLÜMÜ
      ============================================ -->
 
-<div class="card"
-    style="margin-bottom: 40px; background: linear-gradient(135deg, #20B2AA 0%, #1a8f89 100%); color: white;">
+<div class="card" style="margin-bottom: 40px; background-color: #40C4FF; color: white;">
 
     <!-- Başlık -->
-    <h1 style="margin: 0 0 20px 0; text-align: center;">
+    <h1 style="margin: 0 0 20px 0; text-align: center; color: white;">
         🔍 Kitap Ara
     </h1>
 
@@ -192,8 +191,8 @@ require_once 'includes/header.php';
 
             <!-- Ara Butonu -->
             <button type="submit" class="btn btn-lg"
-                style="background-color: white; color: #20B2AA; font-weight: 600; padding: 15px 30px;">
-                <i class="fas fa-search"></i> Ara
+                style="background-color: #40C4FF; color: white; font-weight: 600; padding: 15px 30px; border: 2px solid white;">
+                <i class="fas fa-search" style="color: white;"></i> Ara
             </button>
 
         </div>
@@ -202,7 +201,7 @@ require_once 'includes/header.php';
 
     <!-- Arama İpuçları -->
     <div style="text-align: center; margin-top: 20px; opacity: 0.9; font-size: 0.9rem;">
-        <p style="margin: 0;">
+        <p style="margin: 0; color: white;">
             💡 İpucu: "Harry Potter", "Orhan Pamuk", "9780747532699" gibi aramalar yapabilirsiniz
         </p>
     </div>

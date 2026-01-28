@@ -5,7 +5,7 @@
  * ============================================
  * Proje: Kitap Sosyal Ağı
  * Dosya: dashboard.php
- * Yapı: 3 Sütun Twitter/X Düzeni
+ * Yapı: 3-6-3 Bootstrap Grid Sistemi
  * ============================================
  */
 
@@ -110,275 +110,251 @@ $page_title = 'Ana Sayfa';
 require_once 'includes/header.php';
 ?>
 
-<!-- 3 Sütunlu Twitter/X Düzeni -->
-<div style="
-    display: grid;
-    grid-template-columns: 260px 1fr 320px;
-    gap: var(--space-xl);
-    max-width: 1400px;
-    margin: 0 auto;
-    align-items: start;
-">
+<!-- Flash Mesajı -->
+<?php echo get_flash(); ?>
 
-    <!-- ============================================
-         SOL SÜTUN - PROFİL VE MENÜ
-         ============================================ -->
+<!-- ============================================
+     ANA CONTAINER - 3-6-3 SİSTEMİ
+     ============================================ -->
 
-    <aside style="position: sticky; top: 100px;">
+<div class="container my-4">
+    <div class="row align-items-start">
 
-        <!-- Profil Kartı -->
-        <div class="card" style="padding: var(--space-lg); text-align: center;">
+        <!-- ============================================
+             SOL SÜTUN - PROFİL KARTI (col-md-3)
+             ============================================ -->
 
-            <!-- Avatar -->
-            <a href="profile.php">
-                <img src="uploads/avatars/<?php echo htmlspecialchars($user_avatar); ?>"
-                    alt="<?php echo htmlspecialchars($user_full_name); ?>" class="avatar-xl"
-                    style="margin-bottom: var(--space-md);">
-            </a>
+        <div class="col-md-3">
+            <div class="card" style="padding: var(--space-lg); text-align: center;">
 
-            <!-- İsim -->
-            <h3 style="margin: 0 0 var(--space-xs) 0; font-size: var(--text-lg); color: var(--secondary-royal);">
-                <?php echo htmlspecialchars($user_full_name); ?>
-            </h3>
+                <!-- Avatar -->
+                <a href="profile.php">
+                    <img src="uploads/avatars/<?php echo htmlspecialchars($user_avatar); ?>"
+                        alt="<?php echo htmlspecialchars($user_full_name); ?>" class="avatar-xl"
+                        style="margin-bottom: var(--space-md);">
+                </a>
 
-            <!-- Kullanıcı Adı -->
-            <p style="margin: 0 0 var(--space-lg) 0; color: var(--text-muted); font-size: var(--text-sm);">
-                @<?php echo htmlspecialchars($user_name); ?>
-            </p>
+                <!-- İsim -->
+                <h3 style="margin: 0 0 var(--space-xs) 0; font-size: var(--text-lg); color: var(--text-primary);">
+                    <?php echo htmlspecialchars($user_full_name); ?>
+                </h3>
 
-            <!-- İstatistikler -->
-            <div style="
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: var(--space-sm);
-                padding: var(--space-md) 0;
-                border-top: 1px solid var(--border-light);
-                border-bottom: 1px solid var(--border-light);
-            ">
-                <div>
-                    <div style="font-size: var(--text-xl); font-weight: 700; color: var(--primary-lal);">
-                        <?php echo $review_count; ?>
+                <!-- Kullanıcı Adı -->
+                <p style="margin: 0 0 var(--space-lg) 0; color: var(--text-muted); font-size: var(--text-sm);">
+                    @<?php echo htmlspecialchars($user_name); ?>
+                </p>
+
+                <!-- İstatistikler -->
+                <div style="
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: var(--space-sm);
+                    padding: var(--space-md) 0;
+                    border-top: 1px solid var(--border);
+                    border-bottom: 1px solid var(--border);
+                ">
+                    <div>
+                        <div style="font-size: var(--text-xl); font-weight: 700; color: var(--baby-blue);">
+                            <?php echo $review_count; ?>
+                        </div>
+                        <div style="font-size: var(--text-xs); color: var(--text-muted);">Yorum</div>
                     </div>
-                    <div style="font-size: var(--text-xs); color: var(--text-muted);">Yorum</div>
+
+                    <div>
+                        <div style="font-size: var(--text-xl); font-weight: 700; color: var(--baby-blue);">
+                            <?php echo $follower_count; ?>
+                        </div>
+                        <div style="font-size: var(--text-xs); color: var(--text-muted);">Takipçi</div>
+                    </div>
+
+                    <div>
+                        <div style="font-size: var(--text-xl); font-weight: 700; color: var(--baby-blue);">
+                            <?php echo $following_count; ?>
+                        </div>
+                        <div style="font-size: var(--text-xs); color: var(--text-muted);">Takip</div>
+                    </div>
                 </div>
 
-                <div>
-                    <div style="font-size: var(--text-xl); font-weight: 700; color: var(--accent-metallic);">
-                        <?php echo $follower_count; ?>
-                    </div>
-                    <div style="font-size: var(--text-xs); color: var(--text-muted);">Takipçi</div>
-                </div>
-
-                <div>
-                    <div style="font-size: var(--text-xl); font-weight: 700; color: var(--gold);">
-                        <?php echo $following_count; ?>
-                    </div>
-                    <div style="font-size: var(--text-xs); color: var(--text-muted);">Takip</div>
-                </div>
-            </div>
-
-            <!-- Profil Butonu -->
-            <a href="profile.php" class="btn btn-secondary btn-sm btn-block" style="margin-top: var(--space-md);">
-                <i class="fas fa-user"></i> Profilim
-            </a>
-        </div>
-
-        <!-- Menü -->
-        <nav style="margin-top: var(--space-lg); display: flex; flex-direction: column; gap: var(--space-xs);">
-            <a href="dashboard.php" class="btn btn-secondary btn-block" style="justify-content: flex-start;">
-                <i class="fas fa-home"></i> Ana Sayfa
-            </a>
-            <a href="books.php" class="btn btn-secondary btn-block" style="justify-content: flex-start;">
-                <i class="fas fa-search"></i> Kitap Ara
-            </a>
-            <a href="explore.php" class="btn btn-secondary btn-block" style="justify-content: flex-start;">
-                <i class="fas fa-compass"></i> Keşfet
-            </a>
-            <a href="profile.php" class="btn btn-secondary btn-block" style="justify-content: flex-start;">
-                <i class="fas fa-star"></i> Yorumlarım
-            </a>
-        </nav>
-
-    </aside>
-
-    <!-- ============================================
-         ORTA SÜTUN - KİTAP AKIŞI
-         ============================================ -->
-
-    <main style="padding: 0;">
-
-        <!-- Flash Mesajı -->
-        <?php echo get_flash(); ?>
-
-        <!-- Yeni Kitap Keşfet Butonu -->
-        <a href="books.php" class="btn btn-accent btn-lg btn-block" style="margin-bottom: var(--space-xl);">
-            <i class="fas fa-book-open"></i> Yeni Kitap Keşfet
-        </a>
-
-        <!-- Akış Başlığı -->
-        <h3 style="margin: 0 0 var(--space-lg) 0; color: var(--secondary-royal);">
-            <i class="fas fa-stream" style="color: var(--accent-metallic);"></i>
-            Akışın
-        </h3>
-
-        <!-- Yorumlar -->
-        <?php if (empty($feed_reviews)): ?>
-
-            <div class="card" style="text-align: center; padding: var(--space-3xl);">
-                <div style="font-size: var(--text-5xl); margin-bottom: var(--space-lg); opacity: 0.3;">📖</div>
-                <h3 style="color: var(--text-muted);">Akışın Boş</h3>
-                <p style="color: var(--text-muted);">Kitapseverleri takip et!</p>
-                <a href="explore.php" class="btn btn-primary" style="margin-top: var(--space-lg);">
-                    <i class="fas fa-users"></i> Kullanıcıları Keşfet
+                <!-- Profil Butonu -->
+                <a href="profile.php" class="btn btn-secondary btn-sm btn-block" style="margin-top: var(--space-md);">
+                    <i class="fas fa-user"></i> Profilim
                 </a>
             </div>
-
-        <?php else: ?>
-
-            <?php foreach ($feed_reviews as $review): ?>
-
-                <div class="card" style="margin-bottom: var(--space-lg);">
-
-                    <!-- Kullanıcı Bilgileri -->
-                    <div style="display: flex; gap: var(--space-md); margin-bottom: var(--space-md);">
-                        <a href="profile.php?id=<?php echo $review['user_id']; ?>">
-                            <img src="uploads/avatars/<?php echo htmlspecialchars($review['avatar']); ?>"
-                                alt="<?php echo htmlspecialchars($review['username']); ?>" class="avatar-lg">
-                        </a>
-
-                        <div style="flex: 1;">
-                            <a href="profile.php?id=<?php echo $review['user_id']; ?>"
-                                style="font-weight: 700; color: var(--secondary-royal); font-size: var(--text-base);">
-                                <?php echo htmlspecialchars($review['full_name']); ?>
-                            </a>
-                            <div style="color: var(--text-muted); font-size: var(--text-sm);">
-                                @<?php echo htmlspecialchars($review['username']); ?> •
-                                <?php echo time_ago($review['created_at']); ?>
-                            </div>
-                        </div>
-
-                        <!-- Puan -->
-                        <div>
-                            <?php echo show_stars($review['rating']); ?>
-                        </div>
-                    </div>
-
-                    <!-- Yorum -->
-                    <p style="margin: 0 0 var(--space-md) 0; line-height: 1.7; color: var(--text-secondary);">
-                        <?php echo nl2br(htmlspecialchars($review['comment'])); ?>
-                    </p>
-
-                    <!-- Kitap Bilgisi (Eğer varsa) -->
-                    <?php if ($review['book_title']): ?>
-                        <div style="
-                            display: flex;
-                            gap: var(--space-md);
-                            padding: var(--space-md);
-                            background: var(--soft-parchment);
-                            border-radius: var(--radius-md);
-                            border-left: 3px solid var(--accent-metallic);
-                        ">
-                            <?php if ($review['book_cover']): ?>
-                                <img src="<?php echo htmlspecialchars($review['book_cover']); ?>"
-                                    alt="<?php echo htmlspecialchars($review['book_title']); ?>"
-                                    style="width: 60px; height: 90px; object-fit: cover; border-radius: var(--radius-sm);">
-                            <?php endif; ?>
-
-                            <div style="flex: 1;">
-                                <div style="font-weight: 600; color: var(--secondary-royal); margin-bottom: var(--space-xs);">
-                                    <?php echo htmlspecialchars($review['book_title']); ?>
-                                </div>
-                                <div style="font-size: var(--text-sm); color: var(--text-muted);">
-                                    <?php echo htmlspecialchars($review['book_author']); ?>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endif; ?>
-
-                    <!-- Detay Linki -->
-                    <a href="book-detail.php?id=<?php echo urlencode($review['book_api_id']); ?>"
-                        class="btn btn-secondary btn-sm" style="margin-top: var(--space-md);">
-                        <i class="fas fa-book"></i> Kitabı Gör
-                    </a>
-
-                </div>
-
-            <?php endforeach; ?>
-
-        <?php endif; ?>
-
-    </main>
-
-    <!-- ============================================
-         SAĞ SÜTUN - ÖNERİLER
-         ============================================ -->
-
-    <aside style="position: sticky; top: 100px;">
-
-        <!-- Popüler Kitaplar -->
-        <div class="card">
-            <h4 style="margin: 0 0 var(--space-lg) 0; color: var(--secondary-royal); font-size: var(--text-lg);">
-                <i class="fas fa-fire" style="color: var(--accent-metallic);"></i> Popüler Kitaplar
-            </h4>
-
-            <?php if (!empty($popular_books)): ?>
-                <div style="display: flex; flex-direction: column; gap: var(--space-md);">
-                    <?php foreach ($popular_books as $index => $book): ?>
-                        <a href="book-detail.php?id=<?php echo urlencode($book['api_id']); ?>" style="
-                            display: flex;
-                            gap: var(--space-md);
-                            padding: var(--space-sm);
-                            border-radius: var(--radius-md);
-                            transition: background var(--transition-base);
-                        " onmouseover="this.style.background='var(--soft-parchment)'"
-                            onmouseout="this.style.background='transparent'">
-
-                            <!-- Sıra -->
-                            <div style="
-                                font-size: var(--text-2xl);
-                                font-weight: 900;
-                                color: var(--primary-lal);
-                                font-family: 'Cinzel', serif;
-                                min-width: 30px;
-                            ">
-                                <?php echo $index + 1; ?>
-                            </div>
-
-                            <!-- Bilgi -->
-                            <div style="flex: 1; min-width: 0;">
-                                <div style="
-                                    font-weight: 600;
-                                    color: var(--secondary-royal);
-                                    font-size: var(--text-sm);
-                                    margin-bottom: var(--space-xs);
-                                    overflow: hidden;
-                                    text-overflow: ellipsis;
-                                    white-space: nowrap;
-                                ">
-                                    <?php echo htmlspecialchars($book['title']); ?>
-                                </div>
-                                <div style="font-size: var(--text-xs); color: var(--text-muted);">
-                                    <?php echo htmlspecialchars($book['author']); ?>
-                                </div>
-                                <?php if ($book['avg_rating']): ?>
-                                    <div style="margin-top: var(--space-xs); font-size: var(--text-xs);">
-                                        <?php echo show_stars(round($book['avg_rating'])); ?>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-
-                        </a>
-                    <?php endforeach; ?>
-                </div>
-            <?php else: ?>
-                <p style="color: var(--text-muted); font-size: var(--text-sm); text-align: center;">
-                    Henüz popüler kitap yok
-                </p>
-            <?php endif; ?>
         </div>
 
-    </aside>
+        <!-- ============================================
+             ORTA SÜTUN - AKIŞ (col-md-6)
+             ============================================ -->
 
+        <div class="col-md-6">
+
+            <!-- Yeni Kitap Keşfet Butonu - ORTA SÜTUNUN İÇİNDE -->
+            <a href="books.php" class="btn btn-sm w-100 py-2 fw-bold rounded-3 mb-3" 
+               style="background-color: #40C4FF; color: white; text-transform: uppercase; letter-spacing: 0.5px;">
+                <i class="fas fa-book-open"></i> Yeni Kitap Keşfet
+            </a>
+
+            <!-- Akış Başlığı -->
+            <h3 style="margin: 0 0 var(--space-lg) 0; color: var(--text-primary);">
+                <i class="fas fa-stream" style="color: var(--baby-blue);"></i>
+                Akışın
+            </h3>
+
+            <!-- Yorumlar -->
+            <?php if (empty($feed_reviews)): ?>
+
+                <div class="card" style="text-align: center; padding: var(--space-3xl);">
+                    <div style="font-size: var(--text-5xl); margin-bottom: var(--space-lg); opacity: 0.3;">📖</div>
+                    <h3 style="color: var(--text-muted);">Akışın Boş</h3>
+                    <p style="color: var(--text-muted);">Kitapseverleri takip et!</p>
+                    <a href="explore.php" class="btn btn-primary" style="margin-top: var(--space-lg);">
+                        <i class="fas fa-users"></i> Kullanıcıları Keşfet
+                    </a>
+                </div>
+
+            <?php else: ?>
+
+                <?php foreach ($feed_reviews as $review): ?>
+
+                    <div class="card" style="margin-bottom: var(--space-lg);">
+
+                        <!-- Kullanıcı Bilgileri -->
+                        <div style="display: flex; gap: var(--space-md); margin-bottom: var(--space-md);">
+                            <a href="profile.php?id=<?php echo $review['user_id']; ?>">
+                                <img src="uploads/avatars/<?php echo htmlspecialchars($review['avatar']); ?>"
+                                    alt="<?php echo htmlspecialchars($review['username']); ?>" class="avatar-lg">
+                            </a>
+
+                            <div style="flex: 1;">
+                                <a href="profile.php?id=<?php echo $review['user_id']; ?>"
+                                    style="font-weight: 700; color: var(--text-primary); font-size: var(--text-base);">
+                                    <?php echo htmlspecialchars($review['full_name']); ?>
+                                </a>
+                                <div style="color: var(--text-muted); font-size: var(--text-sm);">
+                                    @<?php echo htmlspecialchars($review['username']); ?> •
+                                    <?php echo time_ago($review['created_at']); ?>
+                                </div>
+                            </div>
+
+                            <!-- Puan -->
+                            <div>
+                                <?php echo show_stars($review['rating']); ?>
+                            </div>
+                        </div>
+
+                        <!-- Yorum -->
+                        <p style="margin: 0 0 var(--space-md) 0; line-height: 1.7; color: var(--text-secondary);">
+                            <?php echo nl2br(htmlspecialchars($review['comment'])); ?>
+                        </p>
+
+                        <!-- Kitap Bilgisi (Eğer varsa) -->
+                        <?php if ($review['book_title']): ?>
+                            <div style="
+                                display: flex;
+                                gap: var(--space-md);
+                                padding: var(--space-md);
+                                background: rgba(64, 196, 255, 0.05);
+                                border-radius: var(--radius-md);
+                                border-left: 3px solid var(--baby-blue);
+                            ">
+                                <?php if ($review['book_cover']): ?>
+                                    <img src="<?php echo htmlspecialchars($review['book_cover']); ?>"
+                                        alt="<?php echo htmlspecialchars($review['book_title']); ?>"
+                                        style="width: 60px; height: 90px; object-fit: cover; border-radius: var(--radius-sm);">
+                                <?php endif; ?>
+
+                                <div style="flex: 1;">
+                                    <div style="font-weight: 600; color: var(--text-primary); margin-bottom: var(--space-xs);">
+                                        <?php echo htmlspecialchars($review['book_title']); ?>
+                                    </div>
+                                    <div style="font-size: var(--text-sm); color: var(--text-muted);">
+                                        <?php echo htmlspecialchars($review['book_author']); ?>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+
+                        <!-- Detay Linki -->
+                        <a href="book-detail.php?id=<?php echo urlencode($review['book_api_id']); ?>"
+                            class="btn btn-secondary btn-sm" style="margin-top: var(--space-md);">
+                            <i class="fas fa-book"></i> Kitabı Gör
+                        </a>
+
+                    </div>
+
+                <?php endforeach; ?>
+
+            <?php endif; ?>
+
+        </div>
+
+        <!-- ============================================
+             SAĞ SÜTUN - POPÜLER KİTAPLAR (col-md-3)
+             ============================================ -->
+
+        <div class="col-md-3">
+            <div class="card">
+                <h4 style="margin: 0 0 var(--space-lg) 0; color: var(--text-primary); font-size: var(--text-lg);">
+                    <i class="fas fa-fire" style="color: var(--orange);"></i> Popüler Kitaplar
+                </h4>
+
+                <?php if (!empty($popular_books)): ?>
+                    <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+                        <?php foreach ($popular_books as $index => $book): ?>
+                            <a href="book-detail.php?id=<?php echo urlencode($book['api_id']); ?>" style="
+                                display: flex;
+                                gap: var(--space-md);
+                                padding: var(--space-sm);
+                                border-radius: var(--radius-md);
+                                transition: background var(--transition-base);
+                            " onmouseover="this.style.background='rgba(64, 196, 255, 0.05)'"
+                                onmouseout="this.style.background='transparent'">
+
+                                <!-- Sıra -->
+                                <div style="
+                                    font-size: var(--text-2xl);
+                                    font-weight: 900;
+                                    color: var(--orange);
+                                    min-width: 30px;
+                                ">
+                                    <?php echo $index + 1; ?>
+                                </div>
+
+                                <!-- Bilgi -->
+                                <div style="flex: 1; min-width: 0;">
+                                    <div style="
+                                        font-weight: 600;
+                                        color: var(--text-primary);
+                                        font-size: var(--text-sm);
+                                        margin-bottom: var(--space-xs);
+                                        overflow: hidden;
+                                        text-overflow: ellipsis;
+                                        white-space: nowrap;
+                                    ">
+                                        <?php echo htmlspecialchars($book['title']); ?>
+                                    </div>
+                                    <div style="font-size: var(--text-xs); color: var(--text-muted);">
+                                        <?php echo htmlspecialchars($book['author']); ?>
+                                    </div>
+                                    <?php if ($book['avg_rating']): ?>
+                                        <div style="margin-top: var(--space-xs); font-size: var(--text-xs);">
+                                            <?php echo show_stars(round($book['avg_rating'])); ?>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+
+                            </a>
+                        <?php endforeach; ?>
+                    </div>
+                <?php else: ?>
+                    <p style="color: var(--text-muted); font-size: var(--text-sm); text-align: center;">
+                        Henüz popüler kitap yok
+                    </p>
+                <?php endif; ?>
+            </div>
+        </div>
+
+    </div>
 </div>
 
 <?php

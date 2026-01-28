@@ -190,6 +190,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: var(--space-xl);
 }
 
 /* Logo - "Lonely Eye" Gradient */
@@ -221,12 +222,14 @@ nav {
     background-clip: text;
 }
 
-/* Navigasyon Menü */
+/* Navigasyon Menü - CENTER */
 .nav-menu {
     display: flex;
     gap: var(--space-md);
     align-items: center;
     list-style: none;
+    flex: 1;
+    justify-content: center;
 }
 
 .nav-menu a {
@@ -244,6 +247,7 @@ nav {
 .nav-menu a i {
     font-size: var(--text-lg);
     color: var(--baby-blue);
+    font-weight: 900;
 }
 
 .nav-menu a:hover {
@@ -282,6 +286,35 @@ nav {
 .avatar-xl {
     width: 120px;
     height: 120px;
+}
+
+/* User Profile Box - RIGHT */
+.user-profile-box {
+    display: flex;
+    align-items: center;
+    background-color: rgba(64, 196, 255, 0.1);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-md);
+    transition: all var(--transition-base);
+}
+
+.user-profile-box:hover {
+    background-color: rgba(64, 196, 255, 0.15);
+    border-color: var(--baby-blue);
+}
+
+.user-profile-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    text-decoration: none;
+}
+
+.user-name {
+    font-weight: 700;
+    color: var(--text-primary);
+    font-size: var(--text-base);
 }
 
 /* Mobil Menü Toggle */
@@ -697,7 +730,7 @@ footer i {
    SEARCH HERO SECTION - LONELY EYE GRADIENT
    ============================================ */
 .search-hero {
-    background: linear-gradient(to right, var(--deep-blue), var(--baby-blue));
+    background-color: var(--baby-blue);
     color: var(--white);
     padding: var(--space-3xl) var(--space-xl);
     border-radius: var(--radius-lg);
@@ -717,6 +750,7 @@ footer i {
 
 .search-hero i {
     color: var(--white);
+    font-weight: 900;
 }
 
 .search-hero .form-control {
@@ -747,14 +781,15 @@ footer i {
 }
 
 /* ============================================
-   BOOKS.PHP ARAMA BÖLÜMÜ - ZORLA DÜZELTMELERİ
+   BOOKS.PHP ARAMA BÖLÜMÜ - BEBEK MAVİSİ TEMA
    ============================================ */
 
-/* Turkuaz arka planı ezen mavi gradient */
+/* Turkuaz arka planı ezen bebek mavisi */
 .card[style*="20B2AA"],
 .card[style*="1a8f89"] {
-    background: linear-gradient(135deg, #0000FF 0%, #40C4FF 100%) !important;
-    color: #ffffff !important;
+    background-color: var(--baby-blue) !important;
+    background-image: none !important;
+    color: var(--white) !important;
 }
 
 /* Arama bölümündeki tüm başlıkları beyaz yap */
@@ -762,33 +797,36 @@ footer i {
 .card[style*="20B2AA"] h2,
 .card[style*="1a8f89"] h1,
 .card[style*="1a8f89"] h2 {
-    color: #ffffff !important;
+    color: var(--white) !important;
     margin: 0 0 20px 0;
 }
 
 /* Arama bölümündeki tüm paragrafları beyaz yap */
 .card[style*="20B2AA"] p,
 .card[style*="1a8f89"] p {
-    color: #ffffff !important;
+    color: var(--white) !important;
 }
 
-/* Arama bölümündeki tüm ikonları beyaz yap */
+/* Arama bölümündeki tüm ikonları beyaz ve solid yap */
 .card[style*="20B2AA"] i,
 .card[style*="1a8f89"] i {
-    color: #ffffff !important;
+    color: var(--white) !important;
+    font-weight: 900 !important;
 }
 
-/* Arama butonunu düzelt */
+/* Arama butonunu düzelt - Bebek Mavisi */
 .card[style*="20B2AA"] .btn,
 .card[style*="1a8f89"] .btn {
-    background-color: #ffffff !important;
-    color: #0000FF !important;
+    background-color: var(--baby-blue) !important;
+    color: var(--white) !important;
     font-weight: 700;
+    border: 2px solid var(--white) !important;
 }
 
 .card[style*="20B2AA"] .btn:hover,
 .card[style*="1a8f89"] .btn:hover {
-    background-color: rgba(255, 255, 255, 0.9) !important;
+    background-color: var(--white) !important;
+    color: var(--baby-blue) !important;
 }
 
 /* Arama input'unu düzelt */
@@ -796,10 +834,54 @@ footer i {
 .card[style*="1a8f89"] .form-control {
     background-color: rgba(255, 255, 255, 0.15) !important;
     border: 2px solid rgba(255, 255, 255, 0.3) !important;
-    color: #ffffff !important;
+    color: var(--white) !important;
 }
 
 .card[style*="20B2AA"] .form-control::placeholder,
 .card[style*="1a8f89"] .form-control::placeholder {
     color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* ============================================
+   KİTAP KARTLARI - TURUNCU TEMA
+   ============================================ */
+
+/* Kitap kartlarındaki butonları turuncu yap */
+.grid .card .btn-primary {
+    background-color: var(--orange) !important;
+    color: var(--white) !important;
+}
+
+.grid .card .btn-primary:hover {
+    background-color: #FF6347 !important;
+    transform: translateY(-2px);
+}
+
+/* Kitap kartlarındaki vurgu renklerini turuncu yap */
+.grid .card:hover {
+    border-color: var(--orange) !important;
+}
+/* ============================================
+   ARAMA �KONU - SOLID BEYAZ
+   ============================================ */
+
+/* T�m arama ikonlar�n� solid yap */
+.fa-search,
+i.fa-search {
+    font-weight: 900 !important;
+}
+
+/* ============================================
+   PROF�L SAYFASI - BEBEK MAV�S� TEMA
+   ============================================ */
+
+/* Yorumlar�m ba�l��� ve badge'i bebek mavisi yap */
+.page-title {
+    color: var(--baby-blue) !important;
+}
+
+/* Profile sayfas�ndaki badge'leri bebek mavisi yap */
+.badge-primary {
+    background-color: var(--baby-blue) !important;
+    color: var(--white) !important;
 }
